@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.rawgit.com/plentz/jquery-maskmoney/master/dist/jquery.maskMoney.min.js"></script>
     <title>Atividades</title>
     <style>
         .main {
@@ -16,7 +18,7 @@
             min-height: 100vh;
             display: table;
             width: 100%;
-            background: url('https://images.unsplash.com/photo-1500316124030-4cffa46f10f0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7c3583c9e0a39944ac510280a55bcc0b&auto=format&fit=crop&w=1500&q=80');
+            background: url('https://images.unsplash.com/photo-1499083097717-a156f85f0516?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0857182ce680e944304c9980ec175b10&auto=format&fit=crop&w=1502&q=80');
             background-size: cover;
         }
 
@@ -26,21 +28,25 @@
         }
 
         .actions-card {
-            background: #FFF;
+            background: rgba(255, 255, 255, .8);
             padding: 40px 40px;
-            max-width: 900px;
+            max-width: 700px;
             box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
         }
 
         .card-content {
             line-height: 34px;
-            color:rgba(0, 0, 0, 0.87);
+            color: rgba(0, 0, 0, 0.87);
             font-size: 20px;
             font-weight: bold;
         }
 
         .card-content i {
             font-size: 34px;
+        }
+
+        .card-content span {
+            vertical-align: super;
         }
     </style>
 </head>
@@ -49,11 +55,11 @@
     <div class="main">
         <div class="vertical-center">
             <div class="actions-card row">
-                <h3>Atividades</h3>
                 <div class="row">
-                    <div class="col m6">
+                    <h3 class="col s12">AÇÕES</h3>
+                    <div class="col s6">
                         <div class="card hoverable">
-                            <a href="http://tagmanager.uol.com.br/accounts/management/670/">
+                            <a class="modal-trigger" href="#cadastrar-cliente-modal">
                                 <div class="card-content">
                                     <i class="material-icons">account_box</i>
                                     <span>Cadastrar Cliente</span>
@@ -61,11 +67,11 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col m6">
+                    <div class="col s6">
                         <div class="card hoverable">
-                            <a href="http://tagmanager.uol.com.br/accounts/management/670/">
+                            <a class="modal-trigger" href="#cadastrar-conta-modal">
                                 <div class="card-content">
-                                    <i class="material-icons">account_balance_wallet</i>
+                                    <i class="material-icons">card_membership</i>
                                     <span>Cadastrar Conta</span>
                                 </div>
                             </a>
@@ -73,19 +79,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col m6">
+
+                    <div class="col s6">
                         <div class="card hoverable">
-                            <a href="http://tagmanager.uol.com.br/accounts/management/670/">
-                                <div class="card-content">
-                                    <i class="material-icons">edit</i>
-                                    <span>Atualizar dados do Cliente</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col m6">
-                        <div class="card hoverable">
-                            <a href="http://tagmanager.uol.com.br/accounts/management/670/">
+                            <a href="#modal1">
                                 <div class="card-content">
                                     <i class="material-icons">close</i>
                                     <span>Fechar Conta</span>
@@ -93,10 +90,164 @@
                             </a>
                         </div>
                     </div>
+                    <div class="col s6">
+                        <div class="card hoverable">
+                            <a href="#modal1">
+                                <div class="card-content">
+                                    <i class="material-icons">exit_to_app</i>
+                                    <span>Sair</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div id="cadastrar-cliente-modal" class="modal" style="max-width: 650px;">
+            <div class="modal-content">
+                <h4>Cadastrar Cliente</h4>
+                <form action="">
+                    <div class="row">
+                        <div class="input-field col s7">
+                            <input id="nome" type="text" autocomplete="off">
+                            <label for="nome">Nome completo</label>
+                        </div>
+                        <div class="input-field col s5">
+                            <select>
+                                <option value="pessoa_fisica" selected>Pessoa Fisica</option>
+                                <option value="pessoa_juridica">Pessoa Juridica</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="cpf_cnpj" type="text" autocomplete="off">
+                            <label for="cpf_cnpj">CPF/CNPJ</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="telefone" type="text" autocomplete="off">
+                            <label for="telefone">Telefone</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input id="cep" type="text" autocomplete="off">
+                            <label for="cep">CEP</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="endereco" type="text" autocomplete="off">
+                            <label for="endereco">Endereco</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="cidade" type="text" autocomplete="off">
+                            <label for="cidade">Cidade</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="estado" type="text" autocomplete="off">
+                            <label for="estado">Estado</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col s6 offset-s3">
+                            <button id="submit-button" type="submit" name="btn_login" class="col s12 btn btn-large waves-effect teal lighten-1">Cadastrar Cliente</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="cadastrar-conta-modal" class="modal" style="max-width: 650px;">
+            <div class="modal-content">
+                <h4>Criar Conta</h4>
+                <form action="">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <select id="tipo_conta">
+                                <option value="corrente" selected>Conta Corrente</option>
+                                <option value="poupanca">Conta Poupança</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s5">
+                            <input id="cpf" type="text" autocomplete="off" required>
+                            <label for="cpf">Informe o CPF do cliente</label>
+                        </div>
+
+                        <div class="input-field col s3" style="margin-bottom: 34px;">
+                            <button id="buscar_cliente" class="btn col s12">Buscar Cliente</button>
+                        </div>
+
+
+                        <div class="input-field col s6">
+                            <input id="nome_cliente" type="text" autocomplete="off" disabled required>
+                            <label for="nome_cliente">Nomde Cliente</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="saldo" type="text" autocomplete="off" required>
+                            <label for="saldo">Saldo Inicial (R$)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6 offset-s3">
+                            <button id="submit-button" type="submit" name="btn_login" class="col s12 btn btn-large waves-effect teal lighten-1">
+                                Criar Conta
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+    <script>
+        var modalParams = {
+            onCloseEnd: limparCampos
+        }
+
+        $("#saldo").maskMoney({
+            prefix: "",
+            decimal: ",",
+            thousands: "."
+        });
+
+        var modalCliente = document.querySelector('#cadastrar-cliente-modal')
+        var instanceModalCliente = M.Modal.init(modalCliente, modalParams);
+
+        var modalConta = document.querySelector('#cadastrar-conta-modal')
+        var instanceModalConta = M.Modal.init(modalConta, modalParams);
+
+        function limparCampos(e) {
+            var campos = e.querySelectorAll('input[type="text"], input[type="password"]');
+            for (var i = 0; i < campos.length; i++) {
+                campos[i].value = "";
+            }
+            M.updateTextFields();
+        }
+
+        var elemsSelect = document.querySelectorAll('select');
+        var instancesSelect = M.FormSelect.init(elemsSelect);
+
+
+        //Cadastrar Cliente
+        https://viacep.com.br/ws/05777001/json/
+
+        function buscaCep(cep) {
+
+        }
+
+        //Criar Conta
+        document.querySelector('#buscar_cliente').onclick = function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: './teste.json',
+                success: function (result, status) {
+                    $('#nome_cliente').val(result.nome);
+                    M.updateTextFields();
+                    M.toast({ html: 'Cliente Selecionado', displayLength: 2000 });
+                }, error: function (err) {
+                    M.toast({ html: 'Cliente não encontrado !', displayLength: 3500 });
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
