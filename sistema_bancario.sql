@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           5.6.15-log - MySQL Community Server (GPL)
+-- Versão do servidor:           10.1.31-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win32
 -- HeidiSQL Versão:              9.5.0.5196
 -- --------------------------------------------------------
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   UNIQUE KEY `cpf_cnpj` (`cpf_cnpj`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela sistema_bancario.cliente: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela sistema_bancario.cliente: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
 INSERT INTO `cliente` (`id`, `nome`, `cpf_cnpj`, `telefone`, `cep`, `endereco`, `cidade`, `estado`, `tipo`) VALUES
 	(1, 'Douglas dos Santos Brito 2', '01752904583', '11980940524', '05777001', 'Estrada do Campo Limpo', 'São Paulo', 'São Paulo', 'pessoa_fisica'),
@@ -52,11 +52,11 @@ CREATE TABLE IF NOT EXISTS `conta` (
   UNIQUE KEY `numero_conta` (`numero_conta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela sistema_bancario.conta: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela sistema_bancario.conta: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `conta` DISABLE KEYS */;
 INSERT INTO `conta` (`id`, `id_titular`, `numero_conta`, `senha`, `saldo`, `tipo`, `ativo`) VALUES
-	(1, 1, 2708, '123', 679, 'corrente', b'1'),
-	(2, 2, 123456, '123', 966, 'corrente', b'1'),
+	(1, 1, 2708, '123', 603.5, 'corrente', b'1'),
+	(2, 2, 123456, '123', 1006, 'corrente', b'1'),
 	(3, 14, 66, '123', 850, 'corrente', b'1');
 /*!40000 ALTER TABLE `conta` ENABLE KEYS */;
 
@@ -68,21 +68,16 @@ CREATE TABLE IF NOT EXISTS `transacao` (
   `tipo` varchar(50) DEFAULT NULL,
   `valor` double DEFAULT NULL,
   `conta_destino` int(11) NOT NULL DEFAULT '0',
+  `saldo` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela sistema_bancario.transacao: ~8 rows (aproximadamente)
+-- Copiando dados para a tabela sistema_bancario.transacao: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `transacao` DISABLE KEYS */;
-INSERT INTO `transacao` (`id`, `id_conta`, `data`, `tipo`, `valor`, `conta_destino`) VALUES
-	(11, 1, '2018-05-28 00:00:00', 'Depositou', 50, 0),
-	(12, 1, '2018-05-28 00:00:00', 'Depositou', 5, 0),
-	(13, 1, '2018-05-28 00:00:00', 'Sacou', 10, 0),
-	(14, 1, '2018-05-28 00:00:00', 'Transferiu', 6, 1),
-	(15, 2, '2018-05-28 00:00:00', 'Recebeu', 6, 2),
-	(16, 3, '2018-05-28 00:00:00', 'Depositou', 500, 0),
-	(17, 3, '2018-05-28 00:00:00', 'Transferiu', 600, 3),
-	(18, 1, '2018-05-28 00:00:00', 'Recebeu', 600, 1),
-	(19, 3, '2018-05-28 00:00:00', 'Sacou', 50, 0);
+INSERT INTO `transacao` (`id`, `id_conta`, `data`, `tipo`, `valor`, `conta_destino`, `saldo`) VALUES
+	(22, 1, '2018-05-28 00:00:00', 'Sacou', 15, 0, 643.5),
+	(23, 1, '2018-05-28 00:00:00', 'Transferiu', 40, 1, 603.5),
+	(24, 2, '2018-05-28 00:00:00', 'Recebeu', 40, 2, 1006);
 /*!40000 ALTER TABLE `transacao` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

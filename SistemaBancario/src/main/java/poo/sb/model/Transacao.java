@@ -7,8 +7,9 @@ import poo.sb.utils.Utils;
 public class Transacao {
     Date data;
     String tipo;
-    Double valor;
+    Double valor;    
     Integer conta;
+    Double saldo;
 
     public Date getData() {
         return data;
@@ -49,6 +50,18 @@ public class Transacao {
 
     public void setConta(Integer conta) {
         this.conta = conta;
+    }
+    
+    public Double getSaldo() {
+        return saldo;
+    }
+    
+    public String getSaldoFormatado() {
+        return Utils.numToBrl(this.saldo);
+    }
+    
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;        
     }
 
     

@@ -19,7 +19,6 @@ import poo.sb.DAO.ClienteDAO;
 import poo.sb.model.Cliente;
 import poo.sb.model.ClientePessoaFisica;
 import poo.sb.model.ClientePessoaJuridica;
-import poo.sb.model.Usuario;
 
 @WebServlet(name = "CadastrarCliente", urlPatterns = {"/cadastrar-cliente"})
 public class CadastrarCliente extends HttpServlet {   

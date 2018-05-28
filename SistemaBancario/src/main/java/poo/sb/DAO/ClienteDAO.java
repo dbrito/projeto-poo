@@ -18,9 +18,7 @@ import poo.sb.model.ClientePessoaJuridica;
 
 
 public class ClienteDAO {
-    private static int totalClientes= 0;
-    private static List<Cliente> listaClientes = new ArrayList<Cliente>();
-
+    
     public static void inserir (Cliente cliente) throws SQLException{
         Connection con = ConnectionFactory.getConnetion();
         PreparedStatement stmt = null;

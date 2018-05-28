@@ -10,5 +10,7 @@ package poo.sb.model;
  * @author Douglas
  */
 public class ContaPoupanca extends Conta {
-    
+    public void atualizarRendimentos() {
+        this.setSaldo(this.getSaldo() * 0.06);
+    }
 }

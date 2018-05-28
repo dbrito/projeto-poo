@@ -10,5 +10,7 @@ package poo.sb.model;
  * @author Douglas
  */
 public class ContaCorrente extends Conta {
-    
+    public void cobrarTaxaAdministrativa() {
+        this.setSaldo(this.getSaldo() - 0.30);
+    }
 }
