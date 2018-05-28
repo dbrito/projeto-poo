@@ -1,14 +1,24 @@
 package poo.sb.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Conta implements AcoesConta {
+    private Integer id;   
     private Integer numero;
     private String senha;
     private Cliente titular;
     private Double saldo;    
-    private List<Transacao> transacoes;
+    private List<Transacao> transacoes =  new ArrayList<Transacao>();
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public Integer getNumero() {
         return numero;
     }
@@ -56,6 +66,7 @@ public class Conta implements AcoesConta {
 
     @Override
     public Boolean transferir(Double valor, Conta destino) {                
+        if (this.saldo < valor) return false;
         this.saldo -= valor;
         destino.setSaldo(destino.getSaldo() + valor);
         return true;
@@ -69,7 +80,11 @@ public class Conta implements AcoesConta {
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
-
+        
+    public void addTransacao(Transacao item) {
+        transacoes.add(item);
+    }
+        
     @Override
     public List<Transacao> getExtrato() {
         return this.transacoes;

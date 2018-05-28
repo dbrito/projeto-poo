@@ -2,35 +2,35 @@ package poo.sb.model;
 
 
 public class Cliente {
-    String endereco;
-    String bairro;
-    Integer cep;
-    String estado;
-    String cidade;
+    int id;
     String nome;
     String telefone;
+    String cep;
+    String endereco;            
+    String cidade;    
+    String estado;            
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }      
+    
     public String getEndereco() {
         return endereco;
     }
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
+    }    
 
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(Integer cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 

@@ -1,8 +1,7 @@
 package poo.sb.model;
 
 public class ClientePessoaJuridica extends Cliente{
-
-    String cnpj;
+    String cnpj;    
 
     public String getCnpj() {
         return cnpj;
